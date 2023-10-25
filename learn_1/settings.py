@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     # 'admin_honeypot',
     # Local apps
+    'accounts',
     'blog1',
     'instagram'
 ]

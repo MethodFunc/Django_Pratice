@@ -1,0 +1,6 @@
+Django==4.2.6
+Pillow
+django-extensions
+django-debug-toolbar
+django-querycount
+django-admin-honeypot

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'debug_toolbar',
     # 'admin_honeypot',
+    'bootstrap5',
     # Local apps
     'accounts',
     'blog1',
@@ -66,7 +67,10 @@ ROOT_URLCONF = 'learn_1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            # File System Loader
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -4,3 +4,4 @@ django-extensions
 django-debug-toolbar
 django-querycount
 django-admin-honeypot
+django-bootstrap-v5

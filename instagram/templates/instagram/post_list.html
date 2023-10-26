@@ -1,3 +1,4 @@
+{% load bootstrap5 %}
 <!doctype html>
 <html lang="ko">
 <head>
@@ -15,12 +16,14 @@
 </form>
 <table class="table table-bordered table-hover">
     <tr class="bold">
+        <td>no</td>
         <td>Message</td>
         <td>Photo</td>
     </tr>
     {% for post in post_list %}
 
         <tr>
+            <td> {{ post.pk }}</td>
             <td>{{ post.message }}</td>
             <td>
                 {% if post.photo %}
@@ -32,7 +35,11 @@
     {% endfor %}
 
 </table>
-
+{#{{ is_paginated }}#}
+{#{{ page_obj }}#}
+{% if is_paginated %}
+    {% bootstrap_pagination page_obj size="None" justify_content="center" %}
+{% endif %}
 </body>
 </html>
 

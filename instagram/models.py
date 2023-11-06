@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
-
+from django.urls import reverse
+from django.core.validators import MinLengthValidator
 
 # Create your models here.
 
@@ -17,6 +18,9 @@ class Post(models.Model):
     def __str__(self):
         # return f"Post Object: {self.id}"
         return self.message
+
+    def get_absolute_url(self):
+        return reverse("instagram:post_detail", args=[self.pk])
 
     class Meta:
         ordering = ['-id']
@@ -36,7 +40,8 @@ class Comment(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
+
     # post_set = models.ManyToManyField(Post)
 
     def __str__(self):
-        return  self.name
+        return self.name

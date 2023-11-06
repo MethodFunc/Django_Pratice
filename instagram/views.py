@@ -1,7 +1,10 @@
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, get_object_or_404
+from django.utils.decorators import method_decorator
+
 from .models import Post
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, ArchiveIndexView, YearArchiveView
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -25,7 +28,15 @@ from django.views.generic import ListView, DetailView
 #     })
 
 post_list = ListView.as_view(model=Post, paginate_by=10)
+# post_list = login_required(ListView.as_view(model=Post, paginate_by=10))
 
+# @method_decorator(login_required, name="dispatch")
+# class PostListView(ListView):
+#     model = Post
+#     paginate_by = 10
+#
+#
+# post_list = PostListView.as_view()
 
 # def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
 #     response = HttpResponse()
@@ -64,3 +75,8 @@ post_detail = PostDetailView.as_view()
 
 def archives_years(request: HttpRequest, year: int) -> HttpResponse:
     return HttpResponse(f"{year}, Archives")
+
+
+post_archive = ArchiveIndexView.as_view(model=Post, date_field="create_at")
+
+post_archive_year = YearArchiveView.as_view(model=Post, date_field="create_at", make_object_list="message")

@@ -3,11 +3,17 @@ from django.db import models
 from django.urls import reverse
 from django.core.validators import MinLengthValidator
 
+
 # Create your models here.
 
 class Post(models.Model):
+    # models.GenericIPAddressField
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    message = models.TextField()
+    message = models.TextField(
+        # 유효성 검사 최소 10단어 이상
+        validators=[MinLengthValidator(10)]
+
+    )
     photo = models.ImageField(blank=True, upload_to='instagram/post/%Y/'
                                                     '%m/%d')
     tag_set = models.ManyToManyField('Tag', blank=True)

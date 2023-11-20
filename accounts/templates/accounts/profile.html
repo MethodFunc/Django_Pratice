@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <h2>User: {{ user }}</h2>
+    {% if user.profile %}
+        <ul>
+        <li>{{ user.profile.email }}</li>
+        <li>{{ user.profile.zipcode }}</li>
+        </ul>
+    {% endif %}
+
+    <a href="{% url "profile_edit" %}" class="btn btn-info">프로필 수정</a>
+{% endblock content %}

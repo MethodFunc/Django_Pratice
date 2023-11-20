@@ -7,50 +7,52 @@
 
 {% block content %}
 
-    <script>
-    if(1>0){
-        alert("hello");
-    }
+    {#    <script>#}
+    {#    if(1>0){#}
+    {#        alert("hello");#}
+    {#    }#}
+    {##}
+    {#    </script>#}
 
-    </script>
 
+    <form action="" , method="get">
+        <input type="text" , name="q"/>
+        <input type="submit" value="search">
+    </form>
 
-<form action="" , method="get">
-    <input type="text" , name="q"/>
-    <input type="submit" value="search">
-</form>
-<table class="table table-bordered table-hover">
-    <tr class="bold">
-        <td>no</td>
-        <td>Message</td>
-        <td>Photo</td>
-    </tr>
-    {% for post in post_list %}
-
-        <tr>
-            <td> {{ post.pk }}</td>
-            <td>
-
-                {#                <a href="{% url "instagram:post_detail" post.pk %}">#}
-                <a href="{{ post.get_absolute_url }}">
-                    {{ post.message }}
-                </a>
-            </td>
-            <td>
-                {% if post.photo %}
-                    <img src="{{ post.photo.url }}" style="width: 100px;height: 100px" )/>
-                {% else %}
-                    No Photo
-                {% endif %}
+    <a href="{% url 'instagram:post_new' %}" class="btn btn-primary btn-block mt-3 mb-3">새 포스팅</a>
+    <table class="table table-bordered table-hover">
+        <tr class="bold">
+            <td>no</td>
+            <td>Message</td>
+            <td>Photo</td>
         </tr>
-    {% endfor %}
+        {% for post in post_list %}
 
-</table>
-{#{{ is_paginated }}#}
-{#{{ page_obj }}#}
-{% if is_paginated %}
-    {% bootstrap_pagination page_obj size="None" justify_content="center" %}
-{% endif %}
+            <tr>
+                <td> {{ post.pk }}</td>
+                <td>
+
+                    {#                <a href="{% url "instagram:post_detail" post.pk %}">#}
+                    <a href="{{ post.get_absolute_url }}">
+                        {{ post.message }}
+                    </a>
+                </td>
+                <td>
+                    {% if post.photo %}
+                        <img src="{{ post.photo.url }}" style="width: 100px;height: 100px" )/>
+                    {% else %}
+                        No Photo
+                    {% endif %}
+            </tr>
+        {% endfor %}
+
+    </table>
+    {#{{ is_paginated }}#}
+    {#{{ page_obj }}#}
+    {% if is_paginated %}
+        {% bootstrap_pagination page_obj size="None" justify_content="center" %}
+    {% endif %}
 {% endblock content %}
 
 

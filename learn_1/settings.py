@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from django.contrib.messages import constants as message_contants
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -69,7 +71,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             # File System Loader
-            os.path.join(BASE_DIR, 'templates')
+            os.path.join(BASE_DIR, 'learn_1', 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -155,3 +157,17 @@ INTERNAL_IPS = [
 
 # AUTH_USER_MODEL = 'auth.User'
 # ROOT_URLCONF = ''
+
+MESSAGE_TAGS = {
+    message_contants.DEBUG: "secondary",
+    message_contants.ERROR: "danger",
+
+}
+
+LOGIN_URL = "/accounts/login"
+LOGIN_REDIRECT_URL = "/accounts/profile"
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+
+PASSWORD_RESET_TIMEOUT_DAYS = 3
+PASSWORD_RESET_TIMEOUT = 60 * 60 * 24 * 3
